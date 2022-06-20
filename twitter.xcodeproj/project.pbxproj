@@ -18,6 +18,7 @@
 		6AD2790620BCC0380085BC29 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2790520BCC0380085BC29 /* LoginViewController.m */; };
 		6AD2790920BCC04D0085BC29 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2790820BCC04D0085BC29 /* TimelineViewController.m */; };
 		BA00C3D9286127CF006F8000 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00C3D8286127CF006F8000 /* User.m */; };
+		BA00C3DC286129D7006F8000 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00C3DB286129D7006F8000 /* Tweet.m */; };
 		BA68385D2861126500E5B2F6 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA68385C2861126500E5B2F6 /* Keys.plist */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,8 @@
 		75895B6507775E8AFBEEA2D9 /* Pods-twitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-twitter/Pods-twitter.debug.xcconfig"; sourceTree = "<group>"; };
 		BA00C3D7286127CF006F8000 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		BA00C3D8286127CF006F8000 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		BA00C3DA286129D7006F8000 /* Tweet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
+		BA00C3DB286129D7006F8000 /* Tweet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
 		BA68385C2861126500E5B2F6 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +122,8 @@
 			children = (
 				BA00C3D7286127CF006F8000 /* User.h */,
 				BA00C3D8286127CF006F8000 /* User.m */,
+				BA00C3DA286129D7006F8000 /* Tweet.h */,
+				BA00C3DB286129D7006F8000 /* Tweet.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				6AD278F320BCA6020085BC29 /* BDBOAuth1SessionManager+SFAuthenticationSession.m in Sources */,
 				BA00C3D9286127CF006F8000 /* User.m in Sources */,
 				6AD278E820BC4B970085BC29 /* main.m in Sources */,
+				BA00C3DC286129D7006F8000 /* Tweet.m in Sources */,
 				6AD2790620BCC0380085BC29 /* LoginViewController.m in Sources */,
 				6AD278DA20BC4B950085BC29 /* AppDelegate.m in Sources */,
 				6AD278F620BCB68B0085BC29 /* APIManager.m in Sources */,

@@ -10,6 +10,7 @@
 
 @implementation User
 
+// Initializer that can set all the User properties based on the dictionary.
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
 
