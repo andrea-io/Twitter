@@ -14,11 +14,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 // TODO: Add properties
 
+// Properties needed for displaying a User
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *screenName;
 @property (nonatomic, strong) NSString *profilePicture;
 
 // TODO: Create initializer
+
+// Initializer that can set all the User properties based on the dictionary.
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @end
 
