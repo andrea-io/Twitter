@@ -27,6 +27,14 @@ NS_ASSUME_NONNULL_BEGIN
 // For User's Retweets
 @property (nonatomic, strong) User *retweetedByUser;  // If the tweet is a retweet, this will be the user who retweeted
 
+// MARK: Methods
+
+// Initializer that can set all the Tweet properties based on the dictionary.
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+
+// Returns Tweets when initialized with an array of Tweet dictionaries.
++ (NSMutableArray *)tweetsWithArray:(NSArray *)dictionaries;
+
 @end
 
 NS_ASSUME_NONNULL_END
