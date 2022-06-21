@@ -27,8 +27,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Table View Set Up
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    // Initialize a UIRefreshControl
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:refreshControl atIndex:0];
     
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
@@ -39,7 +46,6 @@
                 //NSLog(@"%@", tweetText);
                 [self.arrayOfTweets addObject:tweet];
             }
-            //self.arrayOfTweets = tweets;
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
@@ -76,12 +82,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
-
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
 
-    // Fetching data for profile picture
+    // Populating data for profile picture
     NSString *URLString = tweet.user.profilePicture;
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
@@ -89,7 +93,7 @@
     cell.profileImageView.image = nil;
     cell.profileImageView.image = [UIImage imageWithData:urlData];
 
-    // Label data
+    // Populating label data
     cell.fullNameLabel.text = tweet.user.name;
     cell.userNameLabel.text = tweet.user.screenName;
     cell.tweetTextLabel.text = tweet.text;
@@ -100,6 +104,34 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.arrayOfTweets.count;
+}
+
+// Makes a network request to get updated data
+// Updates the tableView with the new data
+// Hides the RefreshControl
+- (void)beginRefresh:(UIRefreshControl *)refreshControl {
+
+       // Create NSURL and NSURLRequest
+
+       NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                                             delegate:nil
+                                                        delegateQueue:[NSOperationQueue mainQueue]];
+       session.configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+   
+       NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                               completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+   
+          // ... Use the new data to update the data source ...
+
+          // Reload the tableView now that there is new data
+           [self.tableView reloadData];
+
+          // Tell the refreshControl to stop spinning
+           [refreshControl endRefreshing];
+
+       }];
+   
+       [task resume];
 }
 
 @end
