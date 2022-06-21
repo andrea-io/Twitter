@@ -130,7 +130,9 @@
                                                 <constraint firstItem="9et-qB-UYR" firstAttribute="leading" secondItem="A9m-Qr-jPc" secondAttribute="trailing" constant="8" symbolic="YES" id="BEb-jE-r4b"/>
                                                 <constraint firstItem="Fj2-ee-RU5" firstAttribute="top" secondItem="9et-qB-UYR" secondAttribute="bottom" constant="8" symbolic="YES" id="Rhi-jc-aZi"/>
                                                 <constraint firstItem="Fj2-ee-RU5" firstAttribute="leading" secondItem="A9m-Qr-jPc" secondAttribute="trailing" constant="8" symbolic="YES" id="Tj1-OP-2AF"/>
+                                                <constraint firstItem="Fj2-ee-RU5" firstAttribute="leading" secondItem="A9m-Qr-jPc" secondAttribute="trailing" constant="8" symbolic="YES" id="UcX-qc-2DJ"/>
                                                 <constraint firstItem="yww-uU-ABi" firstAttribute="top" secondItem="oay-SV-PLM" secondAttribute="topMargin" id="VZk-XI-aHE"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Fj2-ee-RU5" secondAttribute="bottom" constant="19" id="Yof-mV-idi"/>
                                                 <constraint firstItem="SWA-Vx-nCF" firstAttribute="leading" secondItem="yww-uU-ABi" secondAttribute="trailing" constant="6" id="c3S-nd-tbb"/>
                                                 <constraint firstItem="A9m-Qr-jPc" firstAttribute="leading" secondItem="oay-SV-PLM" secondAttribute="leadingMargin" id="jOG-Na-s77"/>
                                                 <constraint firstItem="9et-qB-UYR" firstAttribute="top" secondItem="oay-SV-PLM" secondAttribute="topMargin" id="lHc-e8-7qf"/>
@@ -144,6 +146,7 @@
                                             <outlet property="fullNameLabel" destination="9et-qB-UYR" id="bmS-a8-QWU"/>
                                             <outlet property="profileImageView" destination="A9m-Qr-jPc" id="Gwm-lC-cn3"/>
                                             <outlet property="tweetDateLabel" destination="SWA-Vx-nCF" id="QH0-6Z-kgc"/>
+                                            <outlet property="tweetTextLabel" destination="Fj2-ee-RU5" id="1Ms-6u-Vzd"/>
                                             <outlet property="userNameLabel" destination="yww-uU-ABi" id="MU4-Gb-7Rf"/>
                                         </connections>
                                     </tableViewCell>

@@ -92,7 +92,7 @@
     // Label data
     cell.fullNameLabel.text = tweet.user.name;
     cell.userNameLabel.text = tweet.user.screenName;
-    cell.textLabel.text = tweet.text;
+    cell.tweetTextLabel.text = tweet.text;
     cell.tweetDateLabel.text = tweet.createdAtString;
 
     return cell;
