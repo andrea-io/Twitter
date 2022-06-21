@@ -10,8 +10,14 @@
 #import "APIManager.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "UIImageView+AFNetworking.h"
 
-@interface TimelineViewController ()
+#import "TweetCell.h"
+#import "Tweet.h"
+#import "User.h"
+
+@interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *timelineTableView;
 - (IBAction)didTapLogout:(id)sender;
 
 @end
@@ -20,6 +26,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.timelineTableView.dataSource = self;
+    self.timelineTableView.delegate = self;
     
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
@@ -34,6 +43,7 @@
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
     }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,6 +71,26 @@
     
     // Clear out the access tokens
     [[APIManager shared] logout];
+}
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    TweetCell *cell = [self.timelineTableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
+    
+    Tweet *tweet = self.arrayOfTweets[indexPath.row];
+    
+    NSString *URLString = tweet.user.profilePicture;
+    NSURL *url = [NSURL URLWithString:URLString];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+
+    cell.profileImageView.image = nil;
+    cell.profileImageView.image = [UIImage imageWithData:urlData];
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.arrayOfTweets.count;
 }
 
 @end
