@@ -110,28 +110,24 @@
 // Updates the tableView with the new data
 // Hides the RefreshControl
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
-
        // Create NSURL and NSURLRequest
-
-       NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
-                                                             delegate:nil
-                                                        delegateQueue:[NSOperationQueue mainQueue]];
-       session.configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
-   
-       NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                               completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-   
-          // ... Use the new data to update the data source ...
-
-          // Reload the tableView now that there is new data
-           [self.tableView reloadData];
-
-          // Tell the refreshControl to stop spinning
-           [refreshControl endRefreshing];
-
-       }];
-   
-       [task resume];
+        [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
+        if (tweets) {
+            NSLog(@"😎😎😎 Successfully loaded home timeline");
+            self.arrayOfTweets = [[NSMutableArray alloc] init];
+            for (Tweet *tweet in tweets) {
+                //NSLog(@"%@", tweetText);
+                [self.arrayOfTweets addObject:tweet];
+            }
+        } else {
+            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+        }
+            
+        [self.tableView reloadData];
+            
+        // Tell the refreshControl to stop spinning
+        [refreshControl endRefreshing];
+    }];
 }
 
 @end
