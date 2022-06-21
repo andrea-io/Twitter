@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TweetCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *retweetNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *likeNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tweetTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tweetDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;

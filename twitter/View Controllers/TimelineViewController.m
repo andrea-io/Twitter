@@ -89,7 +89,7 @@
     NSString *URLString = tweet.user.profilePicture;
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
-
+    
     cell.profileImageView.image = nil;
     cell.profileImageView.image = [UIImage imageWithData:urlData];
 
@@ -98,7 +98,10 @@
     cell.userNameLabel.text = tweet.user.screenName;
     cell.tweetTextLabel.text = tweet.text;
     cell.tweetDateLabel.text = tweet.createdAtString;
-
+    cell.retweetNumberLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
+    
+    cell.likeNumberLabel.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
+    
     return cell;
 }
 
