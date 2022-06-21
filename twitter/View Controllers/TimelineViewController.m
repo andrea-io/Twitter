@@ -17,7 +17,7 @@
 #import "User.h"
 
 @interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *timelineTableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)didTapLogout:(id)sender;
 
 @end
@@ -27,21 +27,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.timelineTableView.dataSource = self;
-    self.timelineTableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
-            self.arrayOfTweets = tweets;
             NSLog(@"😎😎😎 Successfully loaded home timeline");
-            for (NSDictionary *dictionary in tweets) {
-                NSString *text = dictionary[@"text"];
-                NSLog(@"%@", text);
+            self.arrayOfTweets = [[NSMutableArray alloc] init];
+            for (Tweet *tweet in tweets) {
+                //NSLog(@"%@", tweetText);
+                [self.arrayOfTweets addObject:tweet];
             }
+            //self.arrayOfTweets = tweets;
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
+        [self.tableView reloadData];
     }];
     
 }
@@ -73,19 +75,26 @@
     [[APIManager shared] logout];
 }
 
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
-    TweetCell *cell = [self.timelineTableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
+
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
-    
+
+    // Fetching data for profile picture
     NSString *URLString = tweet.user.profilePicture;
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
 
     cell.profileImageView.image = nil;
     cell.profileImageView.image = [UIImage imageWithData:urlData];
-    
+
+    // Label data
+    cell.fullNameLabel.text = tweet.user.name;
+    cell.userNameLabel.text = tweet.user.screenName;
+    cell.textLabel.text = tweet.text;
+    cell.tweetDateLabel.text = tweet.createdAtString;
+
     return cell;
 }
 
