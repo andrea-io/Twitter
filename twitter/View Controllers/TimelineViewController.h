@@ -10,4 +10,6 @@
 
 @interface TimelineViewController : UIViewController
 
+@property (nonatomic, strong) NSMutableArray *arrayOfTweets; // For favoriting, retweeting & replying
+
 @end
