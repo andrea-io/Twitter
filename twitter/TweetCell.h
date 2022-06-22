@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Tweet.h"
+#import "DateTools.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TweetCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
 

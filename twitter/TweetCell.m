@@ -15,6 +15,7 @@
 #import "TimelineViewController.h"
 #import "Tweet.h"
 #import "User.h"
+#import "DateTools.h"
 
 @implementation TweetCell
 
@@ -27,26 +28,40 @@
         // State to undo retweet
         self.tweet.retweeted = NO;
         self.tweet.retweetCount -= 1;
+        
+        // TODO: Update cell UI
+
+        [self refreshRetweetValues];
+        
+        // TODO: Send a POST request to the POST statuses/unretweet/:id endpoint
+        [[APIManager shared] unRetweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+             if(error){
+                  NSLog(@"Error unretweeting tweet: %@", error.localizedDescription);
+             }
+             else{
+                 NSLog(@"Successfully unretweeted the following Tweet: %@", tweet.text);
+             }
+         }];
+        
     } else {
         // State to conduct a retweet
         self.tweet.retweeted = YES;
         self.tweet.retweetCount += 1;
-    }
-    
-    // TODO: Update cell UI
-    // Need to create a refreshData() method in the cell that updates all views, i.e. sets the labels to their respective text, etc.
+        
+        // TODO: Update cell UI
 
-    [self refreshRetweetValues];
-    
-    // TODO: Send a POST request to the POST favorites/create endpoint
-    [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
-         if(error){
-              NSLog(@"Error retweeting tweet: %@", error.localizedDescription);
-         }
-         else{
-             NSLog(@"Successfully retweeted the following Tweet: %@", tweet.text);
-         }
-     }];
+        [self refreshRetweetValues];
+        
+        // TODO: Send a POST request to the POST statuses/retweet/:id endpoint
+        [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+             if(error){
+                  NSLog(@"Error retweeting tweet: %@", error.localizedDescription);
+             }
+             else{
+                 NSLog(@"Successfully retweeted the following Tweet: %@", tweet.text);
+             }
+         }];
+    }
 }
 
 - (IBAction)didTapFavorite:(id)sender {
@@ -57,25 +72,40 @@
         // State to undo favorite
         self.tweet.favorited = NO;
         self.tweet.favoriteCount -= 1;
+        
+        // TODO: Update cell UI
+        
+        [self refreshFavoriteValues];
+        
+        // TODO: Send a POST request to the POST favorites/destroy endpoint
+        [[APIManager shared] unFavorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+             if(error){
+                  NSLog(@"Error unfavoriting tweet: %@", error.localizedDescription);
+             }
+             else{
+                 NSLog(@"Successfully unfavorited the following Tweet: %@", tweet.text);
+             }
+         }];
+        
     } else {
-        // State to conduct a retweet
+        // State to favorite the tweet
         self.tweet.favorited = YES;
         self.tweet.favoriteCount += 1;
+        
+        // TODO: Update cell UI
+        
+        [self refreshFavoriteValues];
+        
+        // TODO: Send a POST request to the POST favorites/create endpoint
+        [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+             if(error){
+                  NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+             }
+             else{
+                 NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+             }
+         }];
     }
-    
-    // TODO: Update cell UI
-    
-    [self refreshFavoriteValues];
-    
-    // TODO: Send a POST request to the POST favorites/create endpoint
-    [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
-         if(error){
-              NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
-         }
-         else{
-             NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
-         }
-     }];
 }
 
 - (void)awakeFromNib {
