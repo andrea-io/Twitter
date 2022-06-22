@@ -16,6 +16,7 @@
     self.tweet.favorited = YES;
     self.tweet.favoriteCount += 1;
     
+    
     // TODO: Update cell UI
     // Need to create a refreshData() method in the cell that updates all views, i.e. sets the labels to their respective text, etc.
     
