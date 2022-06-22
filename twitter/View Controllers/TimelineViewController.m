@@ -90,13 +90,13 @@
     cell.profileImageView.image = nil;
     cell.profileImageView.image = [UIImage imageWithData:urlData];
 
-    if(tweet.favorited == true) {
+    if(tweet.favorited == YES) {
         [cell.favoriteButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
     } else {
         [cell.favoriteButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
     }
     
-    if(tweet.retweeted == true) {
+    if(tweet.retweeted == YES) {
         [cell.retweetButton setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
     } else {
         [cell.retweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];

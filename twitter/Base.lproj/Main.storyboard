@@ -152,6 +152,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="favor-icon"/>
+                                                    <connections>
+                                                        <action selector="didTapFavorite:" destination="vZA-R1-88s" eventType="touchUpInside" id="SaG-k0-2g0"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWA-Vx-nCF">
                                                     <rect key="frame" x="289" y="11" width="70" height="15"/>
