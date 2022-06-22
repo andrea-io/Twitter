@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "ComposeViewController.h"
 
 #import "TweetCell.h"
 #import "Tweet.h"
@@ -127,6 +128,12 @@
         // Tell the refreshControl to stop spinning
         [refreshControl endRefreshing];
     }];
+}
+
+// Add the new tweet to the tweets array
+- (void)didTweet:(nonnull Tweet *)tweet {
+    [self.arrayOfTweets insertObject:tweet atIndex:0];
+    [self.tableView reloadData];
 }
 
 @end

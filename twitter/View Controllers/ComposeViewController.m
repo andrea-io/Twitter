@@ -16,9 +16,17 @@
 @implementation ComposeViewController
 
 - (IBAction)tweetAction:(id)sender {
-    [[APIManager shared] postStatusWithText:self.composeTextView.text completion:^(Tweet *tweet, NSError *error) {
-        [self dismissViewControllerAnimated:true completion:nil];
+    [[APIManager shared]postStatusWithText:self.composeTextView.text completion:^(Tweet *tweet, NSError *error) {
+        if(error){
+            NSLog(@"Error composing Tweet: %@", error.localizedDescription);
+        }
+        else{
+            [self.delegate didTweet:tweet];
+            NSLog(@"Compose Tweet Success!");
+        }
     }];
+    [self dismissViewControllerAnimated:true completion:nil];
+
 }
 
 - (IBAction)closeAction:(id)sender {
