@@ -81,6 +81,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
+    
+    cell.tweet = tweet;
 
     // Populating data for profile picture
     NSString *URLString = tweet.user.profilePicture;
