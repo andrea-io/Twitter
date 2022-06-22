@@ -16,6 +16,7 @@
 #import "TweetCell.h"
 #import "Tweet.h"
 #import "User.h"
+#import "DateTools.h"
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -106,7 +107,7 @@
 
     // Populating label data
     cell.fullNameLabel.text = tweet.user.name;
-    cell.userNameLabel.text = tweet.user.screenName;
+    cell.userNameLabel.text = [@"@" stringByAppendingString:tweet.user.screenName];
     cell.tweetTextLabel.text = tweet.text;
     cell.tweetDateLabel.text = tweet.createdAtString;
     cell.retweetNumberLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
