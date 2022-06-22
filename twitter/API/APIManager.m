@@ -99,7 +99,9 @@ static NSString * const baseURLString = @"https://api.twitter.com";
 // Takes in the tweet to be retweeted and then uses its id property to create the parameters dictionary.
 - (void)retweet:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion {
 
-    NSString *urlString = @"/1.1/statuses/retweet/:id.json";
+    NSString *tweetIDJson = [tweet.idStr stringByAppendingString:@".json"];
+    NSString *urlString = [@"/1.1/statuses/retweet/" stringByAppendingString:tweetIDJson];
+    
     NSDictionary *parameters = @{@"id": tweet.idStr};
     [self POST:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable tweetDictionary) {
         Tweet *tweet = [[Tweet alloc]initWithDictionary:tweetDictionary];
@@ -125,7 +127,8 @@ static NSString * const baseURLString = @"https://api.twitter.com";
 // Takes in the tweet to be unretweeted and then uses its id property to create the parameters dictionary.
 - (void)unRetweet:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion {
 
-    NSString *urlString = @"1.1/statuses/unretweet/:id.json";
+    NSString *tweetIDJson = [tweet.idStr stringByAppendingString:@".json"];
+    NSString *urlString = [@"1.1/statuses/unretweet/" stringByAppendingString:tweetIDJson];
     NSDictionary *parameters = @{@"id": tweet.idStr};
     [self POST:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable tweetDictionary) {
         Tweet *tweet = [[Tweet alloc]initWithDictionary:tweetDictionary];
