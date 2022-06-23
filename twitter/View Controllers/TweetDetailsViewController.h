@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol TweetDetailViewControllerDelegate
+@end
+
 @interface TweetDetailsViewController : UIViewController
+@property (nonatomic, strong) NSMutableArray *detailDict;
 @property (weak, nonatomic) IBOutlet UIButton *detailFavoriteButton;
 @property (weak, nonatomic) IBOutlet UIButton *detailRetweetButton;
 
@@ -21,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *detailUserNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailFullNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *detailProfileImage;
+@property (nonatomic, weak) id<TweetDetailViewControllerDelegate> delegate;
 
 @end
 

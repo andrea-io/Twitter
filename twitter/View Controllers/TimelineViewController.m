@@ -12,6 +12,7 @@
 #import "LoginViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
+#import "TweetDetailsViewController.h"
 
 #import "TweetCell.h"
 #import "Tweet.h"
@@ -65,6 +66,17 @@
     UINavigationController *navigationController = [segue destinationViewController];
     ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
     composeController.delegate = self;
+
+    
+    if([segue.identifier isEqualToString:@"TweetSegue"]) {
+        TweetCell *cell = sender;
+        NSIndexPath *myIndexPath = [self.tableView indexPathForCell:cell];
+        
+        NSMutableArray *dataToPass = self.arrayOfTweets[myIndexPath.row];
+        TweetDetailsViewController *detailVC = [segue destinationViewController];
+        detailVC.detailDict = dataToPass;
+        
+    }
 }
 
 - (IBAction)didTapLogout:(id)sender {

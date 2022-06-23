@@ -200,7 +200,7 @@
                                             <outlet property="tweetDateLabel" destination="SWA-Vx-nCF" id="QH0-6Z-kgc"/>
                                             <outlet property="tweetTextLabel" destination="Fj2-ee-RU5" id="1Ms-6u-Vzd"/>
                                             <outlet property="userNameLabel" destination="yww-uU-ABi" id="MU4-Gb-7Rf"/>
-                                            <segue destination="8M2-td-hQV" kind="presentation" id="NAG-66-9tR"/>
+                                            <segue destination="8M2-td-hQV" kind="presentation" identifier="TweetSegue" id="NAG-66-9tR"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

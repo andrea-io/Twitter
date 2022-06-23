@@ -7,7 +7,17 @@
 //
 
 #import "TweetDetailsViewController.h"
+#import "TimelineViewController.h"
+#import "APIManager.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "UIImageView+AFNetworking.h"
+#import "ComposeViewController.h"
 
+#import "TweetCell.h"
+#import "Tweet.h"
+#import "User.h"
+#import "DateTools.h"
 @interface TweetDetailsViewController ()
 
 @end
@@ -25,6 +35,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    // Get timeline
+    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
+        if (tweets) {
+            NSLog(@"😎😎😎 Successfully loaded home timeline");
+            self.detailDict = [[NSMutableArray alloc] init];
+            for (Tweet *tweet in tweets) {
+                //NSLog(@"%@", tweetText);
+                [self.detailDict addObject:tweet];
+            }
+        } else {
+            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+        }
+    }];
 }
 
 /*
