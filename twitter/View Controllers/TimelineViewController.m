@@ -72,12 +72,12 @@
         Tweet *dataToPass = self.arrayOfTweets[myIndexPath.row];
         TweetDetailsViewController *detailVC = [segue destinationViewController];
         detailVC.detailDict = dataToPass;
-        [self.tableView reloadData];
         
     } else if([segue.identifier isEqualToString:@"ComposeSegue"]) {
         ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
         composeController.delegate = self;
     }
+    [self.tableView reloadData];
 }
 
 - (IBAction)didTapLogout:(id)sender {

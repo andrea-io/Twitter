@@ -144,7 +144,7 @@
     // Set up all text labels (Full name, tweet text, username)
     self.detailTweetTextLabel.text = self.detailDict.text;
     self.detailFullNameLabel.text = self.detailDict.user.name;
-    self.detailUserNameLabel.text = self.detailDict.user.screenName;
+    self.detailUserNameLabel.text = [@"@" stringByAppendingString:self.detailDict.user.screenName];
 
     // Generate URL and URL data for profile image
     NSString *URLString = self.detailDict.user.profilePicture;
