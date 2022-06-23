@@ -69,7 +69,7 @@
         TweetCell *cell = sender;
         NSIndexPath *myIndexPath = [self.tableView indexPathForCell:cell];
         
-        NSMutableArray *dataToPass = self.arrayOfTweets[myIndexPath.row];
+        Tweet *dataToPass = self.arrayOfTweets[myIndexPath.row];
         TweetDetailsViewController *detailVC = [segue destinationViewController];
         detailVC.detailDict = dataToPass;
         
@@ -98,32 +98,39 @@
     cell.tweet = tweet;
 
     // Populating data for profile picture
+    // Generate URL and URL data for profile image
     NSString *URLString = tweet.user.profilePicture;
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     
+    // Assign URL data to profile image
     cell.profileImageView.image = nil;
     cell.profileImageView.image = [UIImage imageWithData:urlData];
 
+    // Update color of favorite buttons based on state
     if(tweet.favorited == YES) {
         [cell.favoriteButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
     } else {
         [cell.favoriteButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
     }
     
+    // Update color of retweet buttons based on state
     if(tweet.retweeted == YES) {
         [cell.retweetButton setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
     } else {
         [cell.retweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
     }
 
-    // Populating label data
+    // Set up all text labels (Full name, tweet text, username)
     cell.fullNameLabel.text = tweet.user.name;
     cell.userNameLabel.text = [@"@" stringByAppendingString:tweet.user.screenName];
     cell.tweetTextLabel.text = tweet.text;
-    cell.tweetDateLabel.text = tweet.createdAtString;
-    cell.retweetNumberLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
     
+    // Set up date text label
+    cell.tweetDateLabel.text = tweet.createdAtString;
+    
+    // Assign number of retweets and favorites to labels
+    cell.retweetNumberLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
     cell.likeNumberLabel.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
     
     return cell;

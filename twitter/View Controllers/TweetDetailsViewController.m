@@ -36,29 +36,41 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     // Get timeline
-    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
-        if (tweets) {
-            NSLog(@"😎😎😎 Successfully loaded home timeline");
-            self.detailDict = [[NSMutableArray alloc] init];
-            for (Tweet *tweet in tweets) {
-                //NSLog(@"%@", tweetText);
-                [self.detailDict addObject:tweet];
-                
-                self.detailTweetTextLabel.text = tweet.text;
-                self.detailFullNameLabel.text = tweet.user.name;
-                self.detailUserNameLabel.text = tweet.user.screenName;
-                
-                NSString *URLString = tweet.user.profilePicture;
-                NSURL *url = [NSURL URLWithString:URLString];
-                NSData *urlData = [NSData dataWithContentsOfURL:url];
-                
-                self.detailProfileImage.image = nil;
-                self.detailProfileImage.image = [UIImage imageWithData:urlData];
-            }
-        } else {
-            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
-        }
-    }];
+
+    // Set up all text labels (Full name, tweet text, username)
+    self.detailTweetTextLabel.text = self.detailDict.text;
+    self.detailFullNameLabel.text = self.detailDict.user.name;
+    self.detailUserNameLabel.text = self.detailDict.user.screenName;
+
+    // Generate URL and URL data for profile image
+    NSString *URLString = self.detailDict.user.profilePicture;
+    NSURL *url = [NSURL URLWithString:URLString];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+
+    // Assign URL data to profile image
+    self.detailProfileImage.image = nil;
+    self.detailProfileImage.image = [UIImage imageWithData:urlData];
+    
+    // Update color of favorite buttons based on state
+    if(self.detailDict.favorited == YES) {
+        [self.detailFavoriteButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
+    } else {
+        [self.detailFavoriteButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
+    }
+    
+    // Update color of retweet buttons based on state
+    if(self.detailDict.retweeted == YES) {
+        [self.detailRetweetButton setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
+    } else {
+        [self.detailRetweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
+    }
+    
+    // Set up date text label
+    self.detailTweetDateLabel.text = self.detailDict.createdAtString;
+    
+    // Assign number of retweets and favorites to labels
+    self.detailRetweetNumberLabel.text = [NSString stringWithFormat:@"%d", self.detailDict.retweetCount];
+    self.detailFavoriteNumberLabel.text = [NSString stringWithFormat:@"%d", self.detailDict.favoriteCount];
 }
 
 /*
