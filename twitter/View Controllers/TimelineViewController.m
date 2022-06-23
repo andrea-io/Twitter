@@ -64,9 +64,6 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-    composeController.delegate = self;
-
     
     if([segue.identifier isEqualToString:@"TweetSegue"]) {
         TweetCell *cell = sender;
@@ -76,6 +73,9 @@
         TweetDetailsViewController *detailVC = [segue destinationViewController];
         detailVC.detailDict = dataToPass;
         
+    } else if([segue.identifier isEqualToString:@"ComposeSegue"]) {
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
     }
 }
 

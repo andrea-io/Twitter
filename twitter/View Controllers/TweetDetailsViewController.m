@@ -43,6 +43,17 @@
             for (Tweet *tweet in tweets) {
                 //NSLog(@"%@", tweetText);
                 [self.detailDict addObject:tweet];
+                
+                self.detailTweetTextLabel.text = tweet.text;
+                self.detailFullNameLabel.text = tweet.user.name;
+                self.detailUserNameLabel.text = tweet.user.screenName;
+                
+                NSString *URLString = tweet.user.profilePicture;
+                NSURL *url = [NSURL URLWithString:URLString];
+                NSData *urlData = [NSData dataWithContentsOfURL:url];
+                
+                self.detailProfileImage.image = nil;
+                self.detailProfileImage.image = [UIImage imageWithData:urlData];
             }
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
@@ -60,6 +71,6 @@
 }
 */
 
-- (IBAction)detailRetweetButton:(id)sender {
-}
+//- (IBAction)detailRetweetButton:(id)sender {
+//}
 @end
