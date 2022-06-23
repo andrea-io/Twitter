@@ -25,11 +25,115 @@
 @implementation TweetDetailsViewController
 
 - (IBAction)tapDetailFavoriteButton:(id)sender {
+    // TODO: Update the local tweet model
     
+    // Check the previous status of favorited
+    if(self.detailDict.favorited == YES) {
+        // State to undo favorite
+        self.detailDict.favorited = NO;
+        self.detailDict.favoriteCount -= 1;
+        
+        // TODO: Update cell UI
+        
+        [self refreshFavoriteValues];
+        
+        // TODO: Send a POST request to the POST favorites/destroy endpoint
+        [[APIManager shared] unFavorite:self.detailDict completion:^(Tweet *tweet, NSError *error) {
+             if(error){
+                  NSLog(@"Error unfavoriting tweet: %@", error.localizedDescription);
+             } else {
+                 NSLog(@"Successfully unfavorited the following Tweet: %@", tweet.text);
+             }
+         }];
+        
+    } else {
+        // State to favorite the tweet
+        self.detailDict.favorited = YES;
+        self.detailDict.favoriteCount += 1;
+        
+        // TODO: Update cell UI
+        
+        [self refreshFavoriteValues];
+        
+        // TODO: Send a POST request to the POST favorites/create endpoint
+        [[APIManager shared] favorite:self.detailDict completion:^(Tweet *tweet, NSError *error) {
+             if(error){
+                  NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+             } else {
+                 NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+             }
+         }];
+    }
 }
 
 - (IBAction)tapDetailRetweetButton:(id)sender {
+    // TODO: Update the local tweet model
+
+    // Check the previous status of retweeted
+    if(self.detailDict.retweeted == YES) {
+        // State to undo retweet
+        self.detailDict.retweeted = NO;
+        self.detailDict.retweetCount -= 1;
+        
+        // TODO: Update cell UI
+
+        [self refreshRetweetValues];
+        
+        // TODO: Send a POST request to the POST statuses/unretweet/:id endpoint
+        [[APIManager shared] unRetweet:self.detailDict completion:^(Tweet *tweet, NSError *error) {
+             if(error){
+                  NSLog(@"Error unretweeting tweet: %@", error.localizedDescription);
+             } else {
+                 NSLog(@"Successfully unretweeted the following Tweet: %@", tweet.text);
+             }
+         }];
+        
+    } else {
+        // State to conduct a retweet
+        self.detailDict.retweeted = YES;
+        self.detailDict.retweetCount += 1;
+        
+        // TODO: Update cell UI
+
+        [self refreshRetweetValues];
+        
+        // TODO: Send a POST request to the POST statuses/retweet/:id endpoint
+        [[APIManager shared] retweet:self.detailDict completion:^(Tweet *tweet, NSError *error) {
+             if(error){
+                  NSLog(@"Error retweeting tweet: %@", error.localizedDescription);
+             } else {
+                 NSLog(@"Successfully retweeted the following Tweet: %@", tweet.text);
+             }
+         }];
+    }
+}
+
+// Refresh data method in the cell that sets the retweet labels and buttons to their respective text, images, etc.
+- (void)refreshRetweetValues {
+    // Update the number of retweets
+    self.detailRetweetNumberLabel.text = [NSString stringWithFormat:@"%d", self.detailDict.retweetCount];
     
+    // Change retweet icon to green version if set to YES
+    if(self.detailDict.retweeted == YES) {
+        [self.detailRetweetButton setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
+    } else {
+        // Tweet is not retweeted (NO), uses normal icon
+        [self.detailRetweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
+    }
+}
+
+// Refresh data method in the cell that sets the favorite labels and buttons to their respective text, images, etc.
+- (void)refreshFavoriteValues {
+    // Update the number of favorites
+    self.detailFavoriteNumberLabel.text = [NSString stringWithFormat:@"%d", self.detailDict.favoriteCount];
+    
+    // Change favorite icon to red version if set to YES
+    if(self.detailDict.favorited == YES) {
+        [self.detailFavoriteButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
+    } else {
+        // Tweet is not favorited (NO), uses normal icon
+        [self.detailFavoriteButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)viewDidLoad {
