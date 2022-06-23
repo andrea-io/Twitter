@@ -14,6 +14,14 @@
 
 @implementation TweetDetailsViewController
 
+- (IBAction)tapDetailFavoriteButton:(id)sender {
+    
+}
+
+- (IBAction)tapDetailRetweetButton:(id)sender {
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -29,4 +37,6 @@
 }
 */
 
+- (IBAction)detailRetweetButton:(id)sender {
+}
 @end

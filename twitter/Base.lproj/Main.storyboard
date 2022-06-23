@@ -329,7 +329,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="" image="retweet-icon"/>
                                 <connections>
-                                    <action selector="didTapRetweet:" destination="vZA-R1-88s" eventType="touchUpInside" id="oqJ-gy-k2b"/>
+                                    <action selector="tapDetailRetweetButton:" destination="8M2-td-hQV" eventType="touchUpInside" id="Hem-7Q-3L7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccj-bo-UdP">
@@ -338,13 +338,24 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="favor-icon"/>
                                 <connections>
-                                    <action selector="didTapFavorite:" destination="vZA-R1-88s" eventType="touchUpInside" id="PXi-EO-ead"/>
+                                    <action selector="tapDetailFavoriteButton:" destination="8M2-td-hQV" eventType="touchUpInside" id="6c8-lf-bZF"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cq5-cw-gUE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="detailFavoriteButton" destination="ccj-bo-UdP" id="rZn-qH-VBh"/>
+                        <outlet property="detailFavoriteNumberLabel" destination="MEN-hB-NpD" id="yer-gR-wDi"/>
+                        <outlet property="detailFullNameLabel" destination="Y7C-3R-da5" id="2lS-9t-Ebw"/>
+                        <outlet property="detailProfileImage" destination="h7Z-rQ-JCZ" id="4zj-J6-3dZ"/>
+                        <outlet property="detailRetweetButton" destination="SvX-eY-WDX" id="ee1-kq-NcW"/>
+                        <outlet property="detailRetweetNumberLabel" destination="Fni-CY-zhP" id="9mK-W5-KZx"/>
+                        <outlet property="detailTweetDateLabel" destination="Ahp-YV-0lD" id="KMx-EG-ohx"/>
+                        <outlet property="detailTweetTextLabel" destination="eon-W6-VS2" id="gJ1-WS-5aV"/>
+                        <outlet property="detailUserNameLabel" destination="wn4-7K-nty" id="Xcj-ky-d5o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hk7-Lb-fCI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
