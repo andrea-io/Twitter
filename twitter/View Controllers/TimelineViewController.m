@@ -13,6 +13,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
 #import "TweetDetailsViewController.h"
+#import "ReplyViewController.h"
 
 #import "TweetCell.h"
 #import "Tweet.h"
@@ -76,7 +77,15 @@
     } else if([segue.identifier isEqualToString:@"ComposeSegue"]) {
         ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
         composeController.delegate = self;
+    } else if([segue.identifier isEqualToString:@"ReplySegue"]) {
+        TweetCell *cell = sender;
+        NSIndexPath *myIndexPath = [self.tableView indexPathForCell:cell];
+    
+        Tweet *dataToPass = self.arrayOfTweets[myIndexPath.row];
+        ReplyViewController *replyVC = [segue destinationViewController];
+        replyVC.detailDict = dataToPass;
     }
+    
     [self.tableView reloadData];
 }
 
