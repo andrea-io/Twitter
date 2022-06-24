@@ -7,6 +7,8 @@
 //
 
 #import "ReplyViewController.h"
+#import "APIManager.h"
+#import "ComposeViewController.h"
 
 @interface ReplyViewController ()
 
@@ -17,6 +19,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (IBAction)replyAction:(id)sender {
+//    [[APIManager shared]replyStatusWithText:self.composeTextView.text completion:^(Tweet *tweet, NSError *error) {
+//        if(error){
+//            NSLog(@"Error replying to Tweet: %@", error.localizedDescription);
+//        }
+//        else{
+//            //[self.delegate didTweet:tweet];
+//            NSLog(@"Reply Tweet Success!");
+//        }
+//    }];
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (IBAction)closeAction:(id)sender {

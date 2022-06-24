@@ -493,12 +493,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9jr-vB-PJw">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="close-icon" id="ZTQ-oh-DmM">
+                        <barButtonItem key="leftBarButtonItem" title="Close Reply Screen" image="close-icon" id="ZTQ-oh-DmM">
                             <connections>
                                 <action selector="closeAction:" destination="cZP-PF-Hhh" id="Z6W-DQ-XIl"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Reply" id="Z9p-FF-HM6"/>
+                        <barButtonItem key="rightBarButtonItem" title="Reply" id="Z9p-FF-HM6">
+                            <connections>
+                                <action selector="replyAction:" destination="cZP-PF-Hhh" id="zf7-B3-tFi"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ipY-9i-Qhe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -574,7 +578,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FBh-sm-tnC">
-                        <barButtonItem key="leftBarButtonItem" image="close-icon" id="ZoD-aM-cLV">
+                        <barButtonItem key="leftBarButtonItem" title="Close Compose Screen" image="close-icon" id="ZoD-aM-cLV">
                             <connections>
                                 <action selector="closeAction:" destination="CeX-lh-kyM" id="eDp-X2-kDB"/>
                             </connections>
