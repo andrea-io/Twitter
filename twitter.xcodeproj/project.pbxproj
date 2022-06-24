@@ -24,6 +24,7 @@
 		BA00C3E6286264E4006F8000 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00C3E5286264E4006F8000 /* ComposeViewController.m */; };
 		BA00C3E92863D14C006F8000 /* TweetDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00C3E82863D14C006F8000 /* TweetDetailsViewController.m */; };
 		BAC771E328664F2D006F49DB /* ReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC771E228664F2D006F49DB /* ReplyViewController.m */; };
+		BAC771E6286664D3006F49DB /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC771E5286664D3006F49DB /* ProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,8 @@
 		BA00C3E82863D14C006F8000 /* TweetDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetDetailsViewController.m; sourceTree = "<group>"; };
 		BAC771E128664F2D006F49DB /* ReplyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReplyViewController.h; sourceTree = "<group>"; };
 		BAC771E228664F2D006F49DB /* ReplyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplyViewController.m; sourceTree = "<group>"; };
+		BAC771E4286664D3006F49DB /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		BAC771E5286664D3006F49DB /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +155,8 @@
 		6AD2790320BCC01B0085BC29 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BAC771E4286664D3006F49DB /* ProfileViewController.h */,
+				BAC771E5286664D3006F49DB /* ProfileViewController.m */,
 				BAC771E128664F2D006F49DB /* ReplyViewController.h */,
 				BAC771E228664F2D006F49DB /* ReplyViewController.m */,
 				BA00C3E72863D14C006F8000 /* TweetDetailsViewController.h */,
@@ -295,6 +300,7 @@
 				6AD278E820BC4B970085BC29 /* main.m in Sources */,
 				BA00C3DC286129D7006F8000 /* Tweet.m in Sources */,
 				6AD2790620BCC0380085BC29 /* LoginViewController.m in Sources */,
+				BAC771E6286664D3006F49DB /* ProfileViewController.m in Sources */,
 				6AD278DA20BC4B950085BC29 /* AppDelegate.m in Sources */,
 				6AD278F620BCB68B0085BC29 /* APIManager.m in Sources */,
 				6AD2790920BCC04D0085BC29 /* TimelineViewController.m in Sources */,

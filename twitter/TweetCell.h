@@ -13,6 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TweetCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIButton *profileImageView;
 
 @property (weak, nonatomic) IBOutlet UIButton *messageButton;
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
@@ -25,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *tweetDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 
-@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
+//@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *fullNameLabel;
 
 @property(strong, nonatomic) Tweet *tweet;

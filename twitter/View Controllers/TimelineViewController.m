@@ -14,6 +14,7 @@
 #import "ComposeViewController.h"
 #import "TweetDetailsViewController.h"
 #import "ReplyViewController.h"
+#import "ProfileViewController.h"
 
 #import "TweetCell.h"
 #import "Tweet.h"
@@ -84,6 +85,13 @@
         Tweet *dataToPass = self.arrayOfTweets[myIndexPath.row];
         ReplyViewController *replyVC = [segue destinationViewController];
         replyVC.detailDict = dataToPass;
+    } else if([segue.identifier isEqualToString:@"ProfileImageSegue"]) {
+        TweetCell *cell = sender;
+        NSIndexPath *myIndexPath = [self.tableView indexPathForCell:cell];
+        
+        User *dataToPass = self.arrayOfTweets[myIndexPath.row];
+        ProfileViewController *profileVC = [segue destinationViewController];
+        profileVC.detailDict = dataToPass;
     }
     
     [self.tableView reloadData];
@@ -112,11 +120,12 @@
     NSString *URLString = tweet.user.profilePicture;
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
-    
     // Assign URL data to profile image
-    cell.profileImageView.image = nil;
-    cell.profileImageView.image = [UIImage imageWithData:urlData];
-
+    
+    //cell.profileImageView.image = nil;
+    
+    [cell.profileImageView setImage:[UIImage imageWithData:urlData] forState:UIControlStateNormal];
+    
     // Assign number of retweets and favorites to labels
     // Updates both retweet and favorite button icon's color
     [self refreshRetweetValues:cell];

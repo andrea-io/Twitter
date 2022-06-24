@@ -19,6 +19,12 @@
 
 @implementation TweetCell
 
+//- (IBAction)didTapProfileImage:(id)sender {
+//    
+//}
+
+
+
 - (IBAction)didTapRetweet:(id)sender {
     
     // TODO: Update the local tweet model
@@ -106,7 +112,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+//    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapProfileImage:)];
+//    
+//    [self.profileImageView addGestureRecognizer:profileTapGestureRecognizer];
+//    [self.profileImageView setUserInteractionEnabled:YES];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
