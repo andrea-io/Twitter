@@ -45,7 +45,7 @@
 
     // Construct what the new text would be if we allowed the user's latest edit
     NSString *newText = [self.composeTextView.text stringByReplacingCharactersInRange:range withString:text];
-    int charactersLeft = 140 - newText.length;
+    int charactersLeft = 140 - (int) newText.length;
     
     // TODO: Update character count label
     self.composeTextMaxCharacter.text = [NSString stringWithFormat:@"%d", charactersLeft];

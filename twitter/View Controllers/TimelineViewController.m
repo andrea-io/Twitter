@@ -108,19 +108,10 @@
     cell.profileImageView.image = nil;
     cell.profileImageView.image = [UIImage imageWithData:urlData];
 
-    // Update color of favorite buttons based on state
-    if(tweet.favorited == YES) {
-        [cell.favoriteButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
-    } else {
-        [cell.favoriteButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
-    }
-    
-    // Update color of retweet buttons based on state
-    if(tweet.retweeted == YES) {
-        [cell.retweetButton setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
-    } else {
-        [cell.retweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
-    }
+    // Assign number of retweets and favorites to labels
+    // Updates both retweet and favorite button icon's color
+    [self refreshRetweetValues:cell];
+    [self refreshFavoriteValues:cell];
 
     // Set up all text labels (Full name, tweet text, username)
     cell.fullNameLabel.text = tweet.user.name;
@@ -129,10 +120,6 @@
     
     // Set up date text label
     cell.tweetDateLabel.text = tweet.createdAtString;
-    
-    // Assign number of retweets and favorites to labels
-    cell.retweetNumberLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
-    cell.likeNumberLabel.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
     
     return cell;
 }
@@ -170,5 +157,34 @@
     [self.arrayOfTweets insertObject:tweet atIndex:0];
     [self.tableView reloadData];
 }
+
+// Refresh data method in the cell that sets the retweet labels and buttons to their respective text, images, etc.
+- (void)refreshRetweetValues:(TweetCell *)cell {
+    // Update the number of retweets
+    cell.retweetNumberLabel.text = [NSString stringWithFormat:@"%d", cell.tweet.retweetCount];
+    
+    // Change retweet icon to green version if set to YES
+    if(cell.tweet.retweeted == YES) {
+        [cell.retweetButton setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
+    } else {
+        // Tweet is not retweeted (NO), uses normal icon
+        [cell.retweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
+    }
+}
+
+// Refresh data method in the cell that sets the favorite labels and buttons to their respective text, images, etc.
+- (void)refreshFavoriteValues:(TweetCell *)cell {
+    // Update the number of favorites
+    cell.likeNumberLabel.text = [NSString stringWithFormat:@"%d", cell.tweet.favoriteCount];
+    
+    // Change favorite icon to red version if set to YES
+    if(cell.tweet.favorited == YES) {
+        [cell.favoriteButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
+    } else {
+        // Tweet is not favorited (NO), uses normal icon
+        [cell.favoriteButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
+    }
+}
+
 
 @end

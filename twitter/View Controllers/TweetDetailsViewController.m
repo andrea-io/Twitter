@@ -155,26 +155,13 @@
     self.detailProfileImage.image = nil;
     self.detailProfileImage.image = [UIImage imageWithData:urlData];
     
-    // Update color of favorite buttons based on state
-    if(self.detailDict.favorited == YES) {
-        [self.detailFavoriteButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
-    } else {
-        [self.detailFavoriteButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
-    }
-    
-    // Update color of retweet buttons based on state
-    if(self.detailDict.retweeted == YES) {
-        [self.detailRetweetButton setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
-    } else {
-        [self.detailRetweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
-    }
+    // Assign number of retweets and favorites to labels
+    // Updates both retweet and favorite button icon's color
+    [self refreshFavoriteValues];
+    [self refreshRetweetValues];
     
     // Set up date text label
     self.detailTweetDateLabel.text = self.detailDict.createdAtString;
-    
-    // Assign number of retweets and favorites to labels
-    self.detailRetweetNumberLabel.text = [NSString stringWithFormat:@"%d", self.detailDict.retweetCount];
-    self.detailFavoriteNumberLabel.text = [NSString stringWithFormat:@"%d", self.detailDict.favoriteCount];
 }
 
 /*
