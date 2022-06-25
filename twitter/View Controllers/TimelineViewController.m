@@ -85,14 +85,16 @@
         Tweet *dataToPass = self.arrayOfTweets[myIndexPath.row];
         ReplyViewController *replyVC = [segue destinationViewController];
         replyVC.detailDict = dataToPass;
-    } else if([segue.identifier isEqualToString:@"ProfileImageSegue"]) {
-        TweetCell *cell = sender;
-        NSIndexPath *myIndexPath = [self.tableView indexPathForCell:cell];
-        
-        User *dataToPass = self.arrayOfTweets[myIndexPath.row];
-        ProfileViewController *profileVC = [segue destinationViewController];
-        profileVC.detailDict = dataToPass;
     }
+//      REMOVED CODE FOR PROFILE IMAGE VIEW
+// else if([segue.identifier isEqualToString:@"ProfileImageSegue"]) {
+//        TweetCell *cell = sender;
+//        NSIndexPath *myIndexPath = [self.tableView indexPathForCell:cell];
+//
+//        User *dataToPass = self.arrayOfTweets[myIndexPath.row];
+//        ProfileViewController *profileVC = [segue destinationViewController];
+//        profileVC.detailDict = dataToPass;
+//    }
     
     [self.tableView reloadData];
 }
