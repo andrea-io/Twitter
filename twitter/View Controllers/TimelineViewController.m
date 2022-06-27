@@ -115,7 +115,6 @@
     [[APIManager shared] logout];
 }
 
-// EO: You can delegate a lot ofthe setting up of the cell to be done by the
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
