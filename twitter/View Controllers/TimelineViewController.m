@@ -43,6 +43,8 @@
     [self.tableView insertSubview:refreshControl atIndex:0];
     
     // Get timeline
+    // EO: Since the tweet fetching is defined in the function beginRefresh, you could replace the below code with [self beginRefresh]
+    // EO: Also a better name for the function could be fetchTweets or fetchData instead of beginRefresh because its more descriptive
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
@@ -86,6 +88,8 @@
         ReplyViewController *replyVC = [segue destinationViewController];
         replyVC.detailDict = dataToPass;
     }
+    // EO: You should completely delete commented out code before final submission
+    
 //      REMOVED CODE FOR PROFILE IMAGE VIEW
 // else if([segue.identifier isEqualToString:@"ProfileImageSegue"]) {
 //        TweetCell *cell = sender;
@@ -111,6 +115,7 @@
     [[APIManager shared] logout];
 }
 
+// EO: You can delegate a lot ofthe setting up of the cell to be done by the
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
