@@ -54,7 +54,7 @@ Here's a walkthrough of implemented user stories:
 
 <img src='https://github.com/andrea-io/Twitter/blob/34282600f3c662b09d90a1a28f3f4ee22fedf51d/Twitter%20Demo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [Kap](https://getkap.co/).
+[Imgur GIF Link - High Quality](https://imgur.com/a/yW0aJjH)
 
 ## Notes
 
